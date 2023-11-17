@@ -28,6 +28,8 @@ public class ExemploPraticoAula05 {
 
     private double valorSacado;
 
+    private int numeroDecisaoMensalidade;
+
 
     // Se a pessoa abrir uma conta-corrente, ela ganha R$ 50
 
@@ -48,6 +50,14 @@ public class ExemploPraticoAula05 {
 
     public void setNumeroAgencia(int numeroAgencia) {
         this.numeroAgencia = numeroAgencia;
+    }
+
+    public int getNumeroDecisaoMensalidade() {
+        return numeroDecisaoMensalidade;
+    }
+
+    public void setNumeroDecisaoMensalidade(int numeroDecisaoMensalidade) {
+        this.numeroDecisaoMensalidade = numeroDecisaoMensalidade;
     }
 
     public double getValorSacado() {
@@ -176,39 +186,7 @@ public class ExemploPraticoAula05 {
             setSaldo(saldoFinal);
             System.out.println("Valor depositado com sucesso!");
             System.out.println("Saldo final:" + getSaldoFinal());
-            System.out.println("O que você gostaria de realizar hoje " + dono + " ?");
-            System.out.println("1 --- SACAR");
-            System.out.println("2 --- DEPOSITAR");
-            System.out.println("3 --- PAGAR MENSALIDADE");
-            System.out.println("4 --- PAGAR BOLETO");
-            System.out.println("5 --- PAGAR DÉBITOS");
-            System.out.println("6 --- FECHAR CONTA");
-            System.out.println("7 --- SAIR");
-            numeroDecisao = 0;
-            numeroDecisao = scanner.nextInt();
-            switch (numeroDecisao) {
-                case 1:
-                    sacar();
-                    break;
-                case 2:
-                    depositar();
-                    break;
-                case 3:
-                    pagarMensalidade();
-                    break;
-                case 4:
-                    pagarBoleto();
-                    break;
-                case 5:
-                    pagarValorEmDebito();
-                    break;
-                case 6:
-                    fecharConta();
-                    break;
-                case 7:
-
-                    break;
-            }
+            menuDecisao();
         } while (numeroDecisao != 7);
 
     }
@@ -222,43 +200,12 @@ public class ExemploPraticoAula05 {
             setValorSacado(valor);
             if (valor > saldo) {
                 System.out.println("Não é possível realizar essa saque, pois o valor de saque é maior que o saldo!");
+                menuDecisao();
             } else {
                 System.out.println("Valor sacado com sucesso!");
                 System.out.println("Saldo final:" + getSaldoFinal());
             }
-            System.out.println("O que você gostaria de realizar hoje " + dono + " ?");
-            System.out.println("1 --- SACAR");
-            System.out.println("2 --- DEPOSITAR");
-            System.out.println("3 --- PAGAR MENSALIDADE");
-            System.out.println("4 --- PAGAR BOLETO");
-            System.out.println("5 --- PAGAR DÉBITOS");
-            System.out.println("6 --- FECHAR CONTA");
-            System.out.println("7 --- SAIR");
-            numeroDecisao = 0;
-            numeroDecisao = scanner.nextInt();
-            switch (numeroDecisao) {
-                case 1:
-                    sacar();
-                    break;
-                case 2:
-                    depositar();
-                    break;
-                case 3:
-                    pagarMensalidade();
-                    break;
-                case 4:
-                    pagarBoleto();
-                    break;
-                case 5:
-                    pagarValorEmDebito();
-                    break;
-                case 6:
-                    fecharConta();
-                    break;
-                case 7:
-
-                    break;
-            }
+            menuDecisao();
         } while (numeroDecisao != 7);
     }
 
@@ -275,43 +222,12 @@ public class ExemploPraticoAula05 {
                 setEmDebito(statusDebito);
                 setValorEmDebito(saldoFinal);
                 System.out.println("O valor em débito é igual à: " + getValorEmDebito());
+                menuDecisao();
             } else {
                 System.out.println("Boleto pago com sucesso!");
                 System.out.println("O dinheiro remanescente do saque é igual à:" + saldoFinal);
             }
-            System.out.println("O que você gostaria de realizar hoje " + dono + " ?");
-            System.out.println("1 --- SACAR");
-            System.out.println("2 --- DEPOSITAR");
-            System.out.println("3 --- PAGAR MENSALIDADE");
-            System.out.println("4 --- PAGAR BOLETO");
-            System.out.println("5 --- PAGAR DÉBITOS");
-            System.out.println("6 --- FECHAR CONTA");
-            System.out.println("7 --- SAIR");
-            numeroDecisao = 0;
-            numeroDecisao = scanner.nextInt();
-            switch (numeroDecisao) {
-                case 1:
-                    sacar();
-                    break;
-                case 2:
-                    depositar();
-                    break;
-                case 3:
-                    pagarMensalidade();
-                    break;
-                case 4:
-                    pagarBoleto();
-                    break;
-                case 5:
-                    pagarValorEmDebito();
-                    break;
-                case 6:
-                    fecharConta();
-                    break;
-                case 7:
-
-                    break;
-            }
+            menuDecisao();
         } while (numeroDecisao != 7);
 
 
@@ -329,43 +245,12 @@ public class ExemploPraticoAula05 {
                 saldoFinal = getSaldo() - getValorEmDebito();
                 System.out.println("Operação concluída com sucesso!");
                 System.out.println("O saldo final da sua conta é de: " + getSaldoFinal());
+                menuDecisao();
             } else if (decisao == 2) {
                 System.out.println("Operação finalizada com sucesso!");
-                System.out.println("Caso queira fazer outra ação, reinicie o programa");
+                menuDecisao();
             }
-            System.out.println("O que você gostaria de realizar hoje " + dono + " ?");
-            System.out.println("1 --- SACAR");
-            System.out.println("2 --- DEPOSITAR");
-            System.out.println("3 --- PAGAR MENSALIDADE");
-            System.out.println("4 --- PAGAR BOLETO");
-            System.out.println("5 --- PAGAR DÉBITOS");
-            System.out.println("6 --- FECHAR CONTA");
-            System.out.println("7 --- SAIR");
-            numeroDecisao = 0;
-            numeroDecisao = scanner.nextInt();
-            switch (numeroDecisao) {
-                case 1:
-                    sacar();
-                    break;
-                case 2:
-                    depositar();
-                    break;
-                case 3:
-                    pagarMensalidade();
-                    break;
-                case 4:
-                    pagarBoleto();
-                    break;
-                case 5:
-                    pagarValorEmDebito();
-                    break;
-                case 6:
-                    fecharConta();
-                    break;
-                case 7:
 
-                    break;
-            }
         } while (numeroDecisao != 7);
     }
 
@@ -379,81 +264,17 @@ public class ExemploPraticoAula05 {
                 System.out.println("2 --- NÃO");
                 int decisao = 0;
                 decisao = scanner.nextInt();
-                if (decisao == 1) {
+                setNumeroDecisaoMensalidade(decisao);
+                if (getNumeroDecisaoMensalidade() == 1) {
                     saldoFinal = getSaldo() - valorMensalidade;
                     setSaldo(saldoFinal);
-                    System.out.println("Operação concluída com sucesso!");
-                    System.out.println("O saldo final da sua conta é de: " + getSaldo());
-                    System.out.println("O que você gostaria de realizar hoje " + dono + " ?");
-                    System.out.println("1 --- SACAR");
-                    System.out.println("2 --- DEPOSITAR");
-                    System.out.println("3 --- PAGAR MENSALIDADE");
-                    System.out.println("4 --- PAGAR BOLETO");
-                    System.out.println("5 --- PAGAR DÉBITOS");
-                    System.out.println("6 --- FECHAR CONTA");
-                    System.out.println("7 --- SAIR");
-                    numeroDecisao = 0;
-                    numeroDecisao = scanner.nextInt();
-                    switch (numeroDecisao) {
-                        case 1:
-                            sacar();
-                            break;
-                        case 2:
-                            depositar();
-                            break;
-                        case 3:
-                            pagarMensalidade();
-                            break;
-                        case 4:
-                            pagarBoleto();
-                            break;
-                        case 5:
-                            pagarValorEmDebito();
-                            break;
-                        case 6:
-                            fecharConta();
-                            break;
-                        case 7:
-
-                            break;
+                    menuDecisao();
                     }
-                } else if (decisao == 2) {
+                } else if (getNumeroDecisaoMensalidade() == 2) {
                     System.out.println("Operação finalizada com sucesso!");
-                    System.out.println("O que você gostaria de realizar hoje " + dono + " ?");
-                    System.out.println("1 --- SACAR");
-                    System.out.println("2 --- DEPOSITAR");
-                    System.out.println("3 --- PAGAR MENSALIDADE");
-                    System.out.println("4 --- PAGAR BOLETO");
-                    System.out.println("5 --- PAGAR DÉBITOS");
-                    System.out.println("6 --- FECHAR CONTA");
-                    System.out.println("7 --- SAIR");
-                    numeroDecisao = 0;
-                    numeroDecisao = scanner.nextInt();
-                    switch (numeroDecisao) {
-                        case 1:
-                            sacar();
-                            break;
-                        case 2:
-                            depositar();
-                            break;
-                        case 3:
-                            pagarMensalidade();
-                            break;
-                        case 4:
-                            pagarBoleto();
-                            break;
-                        case 5:
-                            pagarValorEmDebito();
-                            break;
-                        case 6:
-                            fecharConta();
-                            break;
-                        case 7:
-
-                            break;
-                    }
+                    menuDecisao();
                 }
-            } else {
+            else if (getNumeroDecisaoConta() == 2){
                 System.out.println("A mensalidade a ser paga para a conta poupança é igual de R$ 20,00");
                 double valorMensalidade = 20;
                 System.out.println("Deseja continuar? ");
@@ -465,107 +286,10 @@ public class ExemploPraticoAula05 {
                     saldoFinal = getSaldo() - valorMensalidade;
                     System.out.println("Operação concluída com sucesso!");
                     System.out.println("O saldo final da sua conta é de: " + saldoFinal);
-                    System.out.println("O que você gostaria de realizar hoje " + dono + " ?");
-                    System.out.println("1 --- SACAR");
-                    System.out.println("2 --- DEPOSITAR");
-                    System.out.println("3 --- PAGAR MENSALIDADE");
-                    System.out.println("4 --- PAGAR BOLETO");
-                    System.out.println("5 --- PAGAR DÉBITOS");
-                    System.out.println("6 --- FECHAR CONTA");
-                    System.out.println("7 --- SAIR");
-                    numeroDecisao = 0;
-                    numeroDecisao = scanner.nextInt();
-                    switch (numeroDecisao) {
-                        case 1:
-                            sacar();
-                            break;
-                        case 2:
-                            depositar();
-                            break;
-                        case 3:
-                            pagarMensalidade();
-                            break;
-                        case 4:
-                            pagarBoleto();
-                            break;
-                        case 5:
-                            pagarValorEmDebito();
-                            break;
-                        case 6:
-                            fecharConta();
-                            break;
-                        case 7:
-
-                            break;
-                    }
+                    menuDecisao();
                 } else if (decisao == 2) {
                     System.out.println("Operação finalizada com sucesso!");
-                    System.out.println("O que você gostaria de realizar hoje " + dono + " ?");
-                    System.out.println("1 --- SACAR");
-                    System.out.println("2 --- DEPOSITAR");
-                    System.out.println("3 --- PAGAR MENSALIDADE");
-                    System.out.println("4 --- PAGAR BOLETO");
-                    System.out.println("5 --- PAGAR DÉBITOS");
-                    System.out.println("6 --- FECHAR CONTA");
-                    System.out.println("7 --- SAIR");
-                    numeroDecisao = 0;
-                    numeroDecisao = scanner.nextInt();
-                    switch (numeroDecisao) {
-                        case 1:
-                            sacar();
-                            break;
-                        case 2:
-                            depositar();
-                            break;
-                        case 3:
-                            pagarMensalidade();
-                            break;
-                        case 4:
-                            pagarBoleto();
-                            break;
-                        case 5:
-                            pagarValorEmDebito();
-                            break;
-                        case 6:
-                            fecharConta();
-                            break;
-                        case 7:
-
-                            break;
-                    }
-                }
-                System.out.println("O que você gostaria de realizar hoje " + dono + " ?");
-                System.out.println("1 --- SACAR");
-                System.out.println("2 --- DEPOSITAR");
-                System.out.println("3 --- PAGAR MENSALIDADE");
-                System.out.println("4 --- PAGAR BOLETO");
-                System.out.println("5 --- PAGAR DÉBITOS");
-                System.out.println("6 --- FECHAR CONTA");
-                System.out.println("7 --- SAIR");
-                numeroDecisao = 0;
-                numeroDecisao = scanner.nextInt();
-                switch (numeroDecisao) {
-                    case 1:
-                        sacar();
-                        break;
-                    case 2:
-                        depositar();
-                        break;
-                    case 3:
-                        pagarMensalidade();
-                        break;
-                    case 4:
-                        pagarBoleto();
-                        break;
-                    case 5:
-                        pagarValorEmDebito();
-                        break;
-                    case 6:
-                        fecharConta();
-                        break;
-                    case 7:
-
-                        break;
+                   menuDecisao();
                 }
             }
         }while (numeroDecisao != 7) ;
