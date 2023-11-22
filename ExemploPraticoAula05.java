@@ -30,6 +30,8 @@ public class ExemploPraticoAula05 {
 
     private int numeroDecisaoMensalidade;
 
+    private int numeroDecisaoBoleto;
+
 
     // Se a pessoa abrir uma conta-corrente, ela ganha R$ 50
 
@@ -50,6 +52,14 @@ public class ExemploPraticoAula05 {
 
     public void setNumeroAgencia(int numeroAgencia) {
         this.numeroAgencia = numeroAgencia;
+    }
+
+    public int getNumeroDecisaoBoleto() {
+        return numeroDecisaoBoleto;
+    }
+
+    public void setNumeroDecisaoBoleto(int numeroDecisaoBoleto) {
+        this.numeroDecisaoBoleto = numeroDecisaoBoleto;
     }
 
     public int getNumeroDecisaoMensalidade() {
@@ -163,14 +173,14 @@ public class ExemploPraticoAula05 {
             }
             System.out.println("O que você gostaria de realizar hoje " + dono + " ?");
             System.out.println("1 --- ABRIR CONTA");
-            System.out.println("2 --- SAIR");
+            System.out.println("7 --- SAIR");
             numeroDecisao = 0;
             numeroDecisao = scanner.nextInt();
             switch (numeroDecisao) {
                 case 1:
                     new ExemploPraticoAula05();
                     break;
-                case 2:
+                case 7:
 
                     break;
             }
@@ -196,14 +206,15 @@ public class ExemploPraticoAula05 {
             System.out.println("Digite o valor que você deseja sacar da conta-corrente/poupança: ");
             double valor = 0;
             valor = scanner.nextInt();
-            saldoFinal = (getSaldo() - valor);
-            setValorSacado(valor);
+            setSaldoFinal(saldo = saldo - valor);
+            setSaldo(getSaldoFinal());
+            setValorSacado(valorSacado += valor);
             if (valor > saldo) {
                 System.out.println("Não é possível realizar essa saque, pois o valor de saque é maior que o saldo!");
                 menuDecisao();
             } else {
                 System.out.println("Valor sacado com sucesso!");
-                System.out.println("Saldo final:" + getSaldoFinal());
+                System.out.println("Saldo final:" + getSaldo());
             }
             menuDecisao();
         } while (numeroDecisao != 7);
@@ -214,8 +225,22 @@ public class ExemploPraticoAula05 {
             System.out.println("O valor que você possui sacado no momento é: " + getValorSacado());
             System.out.println("Digite o valor do boleto que você deseja pagar: ");
             double valorBoleto = scanner.nextInt();
-            saldoFinal = getValorSacado() - valorBoleto;
-            setSaldo(saldoFinal);
+            System.out.println("Gostaria de pagar o boleto com o valor já sacado ou com o valor disponível no banco?");
+            System.out.println("1 --- Valor sacado");
+            System.out.println("2 --- Valor disponível no banco");
+            numeroDecisaoBoleto = scanner.nextInt();
+            if (numeroDecisaoBoleto == 1){
+                setValorSacado(getValorSacado() - valorBoleto);
+                System.out.println("Boleto pago com sucesso!");
+                System.out.println("O saldo final do seu saque é igual é:  " + getValorSacado());
+                menuDecisao();
+            } else if (numeroDecisaoBoleto == 2) {
+                setSaldoFinal(getSaldo() - valorBoleto);
+                setSaldo(getSaldoFinal());
+                System.out.println("Boleto pago com sucesso!");
+                System.out.println("O saldo final da sua conta é igual à: " + getSaldo());
+                menuDecisao();
+            }
             if (saldoFinal < 0) {
                 System.out.println("Aviso, a sua conta se encontra em débito com o banco. Caso queira cancelar essa conta, pague esse débito antes.");
                 boolean statusDebito = true;
@@ -242,10 +267,22 @@ public class ExemploPraticoAula05 {
             int decisao = 0;
             decisao = scanner.nextInt();
             if (decisao == 1) {
-                saldoFinal = getSaldo() - getValorEmDebito();
-                System.out.println("Operação concluída com sucesso!");
-                System.out.println("O saldo final da sua conta é de: " + getSaldoFinal());
-                menuDecisao();
+                System.out.println("Gostaria de pagar o valor em débito com o valor já sacado ou com o valor disponível no banco?");
+                System.out.println("1 --- Valor sacado");
+                System.out.println("2 --- Valor disponível no banco");
+                numeroDecisao = scanner.nextInt();
+                if (numeroDecisao == 1){
+                   setValorSacado(getValorSacado() - getValorEmDebito());
+                    System.out.println("Valor em débito pago com sucesso!");
+                    System.out.println("O saldo final da sua conta é igual à: " + getValorSacado());
+                    menuDecisao();
+                } else if (numeroDecisao == 2) {
+                    setSaldoFinal(getSaldo() - getValorEmDebito());
+                    setSaldo(getSaldoFinal());
+                    System.out.println("Boleto pago com sucesso!");
+                    System.out.println("O saldo final da sua conta é igual à: " + getSaldo());
+                    menuDecisao();
+                }
             } else if (decisao == 2) {
                 System.out.println("Operação finalizada com sucesso!");
                 menuDecisao();
@@ -266,9 +303,23 @@ public class ExemploPraticoAula05 {
                 decisao = scanner.nextInt();
                 setNumeroDecisaoMensalidade(decisao);
                 if (getNumeroDecisaoMensalidade() == 1) {
-                    saldoFinal = getSaldo() - valorMensalidade;
-                    setSaldo(saldoFinal);
-                    menuDecisao();
+                    System.out.println("Gostaria de pagar o valor em débito com o valor já sacado ou com o valor disponível no banco?");
+                    System.out.println("1 --- Valor sacado");
+                    System.out.println("2 --- Valor disponível no banco");
+                    numeroDecisao= scanner.nextInt();
+                    if (numeroDecisao == 1){
+                        setValorSacado(getValorSacado() - valorMensalidade);
+                        setSaldo(getSaldoFinal());
+                        System.out.println("Mensalidade paga com sucesso!");
+                        System.out.println("O saldo final da sua conta é igual à: " + getValorSacado());
+                        menuDecisao();
+                    } else if (numeroDecisao == 2) {
+                        setSaldoFinal(getSaldo() - getValorEmDebito());
+                        setSaldo(getSaldoFinal());
+                        System.out.println("Mensalidade paga com sucesso!");
+                        System.out.println("O saldo final da sua conta é igual à: " + getSaldo());
+                        menuDecisao();
+                    }
                     }
                 } else if (getNumeroDecisaoMensalidade() == 2) {
                     System.out.println("Operação finalizada com sucesso!");
@@ -283,10 +334,23 @@ public class ExemploPraticoAula05 {
                 int decisao = 0;
                 decisao = scanner.nextInt();
                 if (decisao == 1) {
-                    saldoFinal = getSaldo() - valorMensalidade;
-                    System.out.println("Operação concluída com sucesso!");
-                    System.out.println("O saldo final da sua conta é de: " + saldoFinal);
-                    menuDecisao();
+                    System.out.println("Gostaria de pagar o valor em débito com o valor já sacado ou com o valor disponível no banco?");
+                    System.out.println("1 --- Valor sacado");
+                    System.out.println("2 --- Valor disponível no banco");
+                    numeroDecisao= scanner.nextInt();
+                    if (numeroDecisao == 1){
+                        setValorSacado(getValorSacado() - valorMensalidade);
+                        setSaldo(getSaldoFinal());
+                        System.out.println("Mensalidade paga com sucesso!");
+                        System.out.println("O saldo final da sua conta é igual à: " + getValorSacado());
+                        menuDecisao();
+                    } else if (numeroDecisao == 2) {
+                        setSaldoFinal(getSaldo() - getValorEmDebito());
+                        setSaldo(getSaldoFinal());
+                        System.out.println("Mensalidade paga com sucesso!");
+                        System.out.println("O saldo final da sua conta é igual à: " + getSaldo());
+                        menuDecisao();
+                    }
                 } else if (decisao == 2) {
                     System.out.println("Operação finalizada com sucesso!");
                    menuDecisao();
@@ -366,39 +430,5 @@ public class ExemploPraticoAula05 {
             saldo += bonus;
         }
         menuDecisao();
-        /*System.out.println("O que você gostaria de realizar hoje " + dono + " ?");
-        System.out.println("1 --- SACAR");
-        System.out.println("2 --- DEPOSITAR");
-        System.out.println("3 --- PAGAR MENSALIDADE");
-        System.out.println("4 --- PAGAR BOLETO");
-        System.out.println("5 --- PAGAR DÉBITOS");
-        System.out.println("6 --- FECHAR CONTA");
-        System.out.println("7 --- SAIR");
-        int decisaoOpcao = 0;
-        decisaoOpcao = scanner.nextInt();
-        setNumeroDecisao(decisaoOpcao);
-        switch (numeroDecisao) {
-            case 1:
-                sacar();
-            break;
-            case 2:
-                depositar();
-            break;
-            case 3:
-                pagarMensalidade();
-            break;
-            case 4:
-                pagarBoleto();
-            break;
-            case 5:
-                pagarValorEmDebito();
-            break;
-            case 6:
-                fecharConta();
-            break;
-            case 7:
-
-            break;
-        }*/
     }
 }
